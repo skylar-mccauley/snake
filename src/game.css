@@ -1,0 +1,21 @@
+@font-face {
+    font-family: Retro;
+    src: url("font.ttf");
+}
+canvas {
+    margin-top: 3%;
+}
+a {
+    margin-top: 5px;
+}
+body, html, p, p1, p2, p3, p4, h1, h2, h3, h4, h6, b, strong, i, em, mark, small, del, ins, sub, sup, ul, li, ol, a, div {
+    font-family: 'Retro';
+    -moz-transition: width 1s ease-in-out, left 1.5s ease-in-out;
+    -webkit-transition: width 1s ease-in-out, left 1.5s ease-in-out;
+    -moz-transition: width 1s ease-in-out, left 1.5s ease-in-out;
+    -o-transition: width 1s ease-in-out, left 1.5s ease-in-out;
+    transition: width 1s ease-in-out, left 1.5s ease-in-out;
+    margin: 0;
+    overflow: hidden;
+    color: white
+  }
