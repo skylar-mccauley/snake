@@ -6,21 +6,29 @@ const path = require('path')
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
 
+
 function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1024,
+    height: 768,
+    'minWidth': 800,
+    'minHeight': 600,
+    backgroundColor: '#000',
+    icon: path.join(__dirname, 'src/snake.png'),
+    icon: path.join(__dirname, 'src/snake.ico'),
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
+      preload: path.join(__dirname, 'preload.js'),
+      nodeIntegration: true
+    
     }
   })
 
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
-
+  mainWindow.removeMenu()
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  //mainWindow.webContents.openDevTools()
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {

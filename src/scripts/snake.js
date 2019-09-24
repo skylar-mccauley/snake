@@ -1,10 +1,22 @@
 var sounds = {
-	slither: new Audio('./src/sounds/slitherLoop.mp3'),
-	gameOver: new Audio('./src/sounds/gameOver.mp3'),
-	newFood: new Audio('./src/sounds/newFood.mp3'),
-	keyPress: new Audio('./src/sounds/pressKey.mp3'),
-	questionCorrect: new Audio('./src/sounds/questionCorrect.mp3'),
-	score100: new Audio('./src/sounds/score100.mp3')
+	slither: new Howl({
+		src: ['../src/sounds/slitherLoop.mp3']
+	  }),
+	gameOver: new Howl({
+	src: ['../src/sounds/gameOver.mp3']
+	}),
+	newFood: new Howl({
+	src: ['../src/sounds/newFood.mp3']
+	}),
+	pressKey: new Howl({
+	src: ['../src/sounds/pressKey.mp3']
+	}),
+	questionCorrect: new Howl({
+	src: ['../src/sounds/questionCorrect.mp3']
+	}),
+	score100: new Howl({
+		src: ['../src/sounds/score100.mp3']
+		})
 }
 function playSound(s) {
 	if(window.location.hash && window.location.hash.includes('noSound')) return;
@@ -13,12 +25,14 @@ function playSound(s) {
 function pauseSound(s, m) {
 	s.pause()
 	if(m) {
-		s.currentTime = 0
+		s.stop()
 	}
 }
 function refresh() {
 	window.location.reload()
+
 }
+
 window.addEventListener("resize", refresh)
 class Node {
 	constructor(x, y) {
@@ -87,7 +101,7 @@ function start() {
 	setTimeout(updateSnake, 100);
 }
 
-function draw() {
+function draw() { 
 	
 	if (gameOver) {
 		if(mobile) {
@@ -134,7 +148,7 @@ console.log(e.key);
 				velX = 0;
 			velY = -1;
 			if(!gameOver) {
-				playSound(sounds.keyPress)
+				playSound(sounds.pressKey)
 				
 			}
 			}
@@ -146,7 +160,7 @@ console.log(e.key);
 			velX = 0;
 			velY = 1;
 		if(!gameOver) {
-			playSound(sounds.keyPress)
+			playSound(sounds.pressKey)
 		}
 		}
 		
@@ -157,7 +171,7 @@ console.log(e.key);
 			velX = -1;
 		velY = 0;
 		if(!gameOver) {
-			playSound(sounds.keyPress)
+			playSound(sounds.pressKey)
 		}
 		}
 		
@@ -168,7 +182,7 @@ console.log(e.key);
 			velX = 1;
 			velY = 0;
 			if(!gameOver) {
-				playSound(sounds.keyPress)
+				playSound(sounds.pressKey)
 			}
 		}
 			
@@ -179,23 +193,17 @@ console.log(e.key);
 	break;
 	case " ":
 			if(gameOver) {
-				playSound(sounds.keyPress)
-			}
-if (gameOver) {
-	pauseSound(sounds.gameOver, true)
-start();
-aiOn = false;
-gameOver = false;
-}
-break;
-
-break;
-case "i":
-		if(gameOver) {
-			playSound(sounds.keyPress)
+				playSound(sounds.pressKey)
+			start();
+			aiOn = false;
+			gameOver = false;
 		}
+		break;
+case "i":
+			
 if(aiOn) return;
 if (gameOver) {
+	playSound(sounds.pressKey)
 start();
 aiOn = true;
 gameOver = false;
@@ -236,7 +244,7 @@ if(aiOn) {
 			ctx.fillRect(canvas.width/2 - 50, canvas.height * .05, 100, canvas.height * .05);
 			ctx.fillStyle = "rgb(255, 255, 255)";
 			ctx.fillText(score - startScore, canvas.width/2, canvas.height * .1);
-			if(score== 100 || score == "100") {
+			if(score== 100 || score == "100" || score == "200"|| score== 200 || score == "300"|| score== 300 || score == "400"|| score== 400 || score == "500"|| score== 500 || score == "600" || score == "600"|| score == "700" || score == "700"|| score == "800" || score == "800"|| score == "900" || score == "900") {
 				playSound(sounds.score100)
 			}
 			makeFood();
@@ -395,7 +403,7 @@ function getAIDir(headX, headY, foodX, foodY) {
 
 function askQuestion() {
 
-	if(window.location.hash && !window.location.hash.includes('mathQuestion')) {
+	if(window.location.hash && window.location.hash.includes('noQuestion') || window.navigator.userAgent.includes("Electron")) {
 			correctAns = undefined;
 			return true;
 	}

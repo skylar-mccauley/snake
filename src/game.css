@@ -3,10 +3,30 @@
     src: url("font.ttf");
 }
 canvas {
-    margin-top: 3%;
+    margin-top: 1%;
 }
-a {
-    margin-top: 5px;
+body {
+    padding-top: 3%;
+}
+
+h2 {
+    float: left;
+}
+img {
+    float: left;
+    height: 2em;
+}
+a div {
+    text-align: center;
+    
+    background-color: #38FF00;
+    color: black !important;
+    margin-top: 3%;
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+    padding: 15px;
+    border-radius: 5px;
+    text-decoration: none;
 }
 body, html, p, p1, p2, p3, p4, h1, h2, h3, h4, h6, b, strong, i, em, mark, small, del, ins, sub, sup, ul, li, ol, a, div {
     font-family: 'Retro';
